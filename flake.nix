@@ -13,6 +13,8 @@
     devShells.${system}.default = pkgs.mkShell {
       packages = with pkgs; [
         python3
+        rustc
+        cargo
         curl
         git
         jq
