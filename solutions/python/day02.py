@@ -36,8 +36,17 @@ def part1(data):
 
     return count
 
-def part2(data):
-    pass
+def part2(data): 
+    reports = parse(data)
+    count = 0 
+
+    for i in range(len(report)):
+        new_report = report[:i] + report[i+1:]
+        if is_safe(new_report):
+            count += 1
+            break
+
+    return count
 
 if __name__ == "__main__":
     with open(sys.argv[1]) as f:
