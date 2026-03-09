@@ -13,7 +13,28 @@ def part1(data):
     return total
 
 def part2(data):
-    pass
+    memory = "".join(data)
+    pattern = r"mul\((\d+),(\d+)\)|do\(\)|don't\(\)"
+    instructions = re.finditer(pattern, memory)
+
+    total = 0
+    enabled = True
+
+    for match in instructions:
+        text = match.group()
+
+        if text == "do()":
+            enabled = True
+
+        elif text == "don't()":
+            enabled = False
+
+        else:
+            a, b = match.groups()
+            if enabled:
+                total += int(a) * int(b)
+
+    return total
 
 if __name__ == "__main__":
     with open(sys.argv[1]) as f:
